@@ -1,0 +1,5 @@
+.idea/
+*.zip
+.ipynb_checkpoints
+Archive
+Example-ML_model_over_web_API

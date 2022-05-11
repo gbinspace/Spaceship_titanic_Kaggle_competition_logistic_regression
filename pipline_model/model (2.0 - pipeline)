@@ -1,0 +1,93 @@
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.feature_selection import RFE
+import pickle
+from sklearn.pipeline import Pipeline
+from sklearn.pipeline import FeatureUnion
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+
+
+# Read CSV final_train data file into DataFrame
+final_train = pd.read_csv("final_train.csv")
+
+
+cols = ["CryoSleep", "Age","TotalExpenditure","VIP","Cabin_class_A","Cabin_class_B","Cabin_class_C","Cabin_class_D","Cabin_class_E","Cabin_class_F","Cabin_class_G","Cabin_class_T",
+       "HomePlanet_Earth","HomePlanet_Europa","HomePlanet_Mars","Destination_55 Cancri e","Destination_PSO J318.5-22","Destination_TRAPPIST-1e", "IsMinor"]
+X = final_train[cols]
+y = final_train['Transported']
+# Build a logreg and compute the feature importances
+
+# Select independent and dependent variable
+# Split the dataset into train and test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=50)
+
+# #Builfing a pipline which 1. scales data 2. apply classifier model
+# pipe = Pipeline([('scaler', StandardScaler()), ('classifier', RandomForestClassifier())])
+#
+# pipe.fit(X_train, y_train)
+# score = pipe.score(X_test, y_test)
+# print(score)
+
+# Feature scaling
+# sc = StandardScaler()
+# X_train = sc.fit_transform(X_train)
+# X_test = sc.transform(X_test)
+#
+# print(X_train)
+#
+# # Instantiate the model
+# classifier = RandomForestClassifier()
+
+# Fit the model
+# classifier.fit(X_train, y_train)
+
+# Feature scaling
+# sc = StandardScaler()
+# X_train = sc.fit_transform(X_train)
+# X_test = sc.transform(X_test)
+
+#Builfing a pipline which 1. scales data 2. apply classifier model
+pipe = Pipeline([('scaler', StandardScaler()), ('classifier', LogisticRegression())])
+
+pipe.fit(X_train, y_train)
+model_fited=pipe.fit(X_train, y_train)
+score = pipe.score(X_test, y_test)
+print(score)
+print(model_fited)
+
+# print(y.value_counts(normalize=False))
+# print(y_train.value_counts(normalize=False))
+# print(y_test.value_counts(normalize=False))
+
+# Feature scaling
+# sc = StandardScaler()
+# X_train = sc.fit_transform(X_train)
+# X_test = sc.transform(X_test)
+#
+# print(X_train)
+#
+# # Instantiate the model
+# classifier = RandomForestClassifier()
+
+# Fit the model
+# classifier.fit(X_train, y_train)
+
+##################################################################
+# ###### Logistinės regresijos modelis ######
+# # Adding LogisticRegression() model
+# model = LogisticRegression()
+# # create the RFE model and select 20 attributes
+# rfe = RFE(model, n_features_to_select=20)
+# rfe = rfe.fit(X, y)
+# # summarize the selection of the attributes
+# print('Selected features: %s' % list(X.columns[rfe.support_]))
+##################################################################
+# Make pickle file of our model
+with open('model.pickle', 'wb') as handle:
+    pickle.dump(pipe, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+print(pipe)

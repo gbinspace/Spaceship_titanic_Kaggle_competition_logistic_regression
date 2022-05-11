@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Predict Spaceship titanic</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="Age" placeholder="Age" required="required" />
+        <input type="text" name=RoomService" placeholder="RoomService" required="required" />
+		<input type="text" name="FoodCourt" placeholder="FoodCourt" required="required" />
+		<input type="text" name="ShoppingMall" placeholder="ShoppingMall" required="required" />
+        <input type="text" name=Spa" placeholder="Spa" required="required" />
+		<input type="text" name="VRDeck" placeholder="VRDeck" required="required" />
+		<input type="text" name="CryoSleep" placeholder="CryoSleep" required="required" />
+        <input type="text" name="Cabin_class_A" placeholder="Cabin_class_A" required="required" />
+        <input type="text" name=Cabin_class_B" placeholder="Cabin_class_B" required="required" />
+		<input type="text" name="Cabin_class_C" placeholder="Cabin_class_C" required="required" />
+		<input type="text" name="Cabin_class_D" placeholder="Cabin_class_D" required="required" />
+		<input type="text" name="Cabin_class_E" placeholder="Cabin_class_E" required="required" />
+        		<input type="text" name="Cabin_class_F" placeholder="Cabin_class_F" required="required" />
+        		<input type="text" name="Cabin_class_G" placeholder="Cabin_class_G" required="required" />
+        		<input type="text" name="Cabin_class_T" placeholder="Cabin_class_T" required="required" />
+        		<input type="text" name="HomePlanet_Earth" placeholder="HomePlanet_Earth" required="required" />
+        <input type="text" name="HomePlanet_Europa" placeholder="HomePlanet_Europa" required="required" />
+<!--        "Age","RoomService","FoodCourt", "ShoppingMall","Spa", "VRDeck","CryoSleep", "Cabin_class_A","Cabin_class_B",-->
+<!--        "Cabin_class_C","Cabin_class_D","Cabin_class_E","Cabin_class_F","Cabin_class_G","Cabin_class_T",-->
+<!--        "HomePlanet_Earth", "HomePlanet_Europa",-->
+<!--        "Destination_PSO J318.5-22", "Destination_TRAPPIST-1e"-->
+        <input type="text" name="Destination_PSO J318.5-22" placeholder="Destination_PSO J318.5-22" required="required" />
+        <input type="text" name="Destination_TRAPPIST-1e" placeholder="Destination_TRAPPIST-1e" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
