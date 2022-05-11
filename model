@@ -34,6 +34,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random
 # X_test = sc.transform(X_test)
 # print(X_train, y_train)
 
+
 # Adding LogisticRegression() model
 model = LogisticRegression(max_iter=10000000)
 # create the RFE model and select 20 attributes
