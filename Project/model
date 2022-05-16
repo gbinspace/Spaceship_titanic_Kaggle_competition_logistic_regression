@@ -109,6 +109,6 @@ prediction_results.info()
 
 
 # Make pickle file of our model
-with open('model.pickle', 'wb') as handle:
+with open('Project/model.pickle', 'wb') as handle:
     pickle.dump(rfe, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
