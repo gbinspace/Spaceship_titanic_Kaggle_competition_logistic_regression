@@ -5,7 +5,7 @@
 
 # Choosing right model:
 <br>  Because of data qualities (no linear data dependencies) was applied Logistic regression, KNeighborsClassifier and RandomForestClassifier.
-Best parameters where find by GridSearch and manually changing which data should be included in the dataset.
+Best parameters have been found and verified by GridSearch and manually changing which data should be included in the dataset.
 
 # How to run API model:
 <br> 1. To run API please install requirements file by using command:
