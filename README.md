@@ -10,7 +10,7 @@ Because of data qualities (no linear data dependencies) was applied Logistic reg
 Best parameters where chosen by GridSearch and manually changing them.
 
 How to run API model:
-<br> 1.To run API please install requirements file by using command:
+<br> 1. To run API please install requirements file by using command:
 pip install -r requirements.txt in Terminal
 <br> 2. Run py application called app in main directory ProjectWorkSpaceshipTitanic
 
