@@ -1,7 +1,7 @@
 # Spaceship_titanic_Kaggle_competition_logistic_regression
 
 # Project description:
-<br> Data set is about alternative titanic ship – spaceship travel to another planets but because it collided with dust cloud half of the passingers were transported to alternative dimension. Need help predict which passengers were transported to alternative dimenssion and help bring them back.
+<br> Data set is about alternative titanic ship – spaceship travel to another planets but because it collided with dust cloud half of the passengers were transported to alternative dimension. Need help predict which passengers were transported to alternative dimenssion and help bring them back.
 
 # Choosing right model:
 <br>  Because of data qualities (no linear data dependencies) was applied Logistic regression, KNeighborsClassifier and RandomForestClassifier.
