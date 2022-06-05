@@ -19,5 +19,5 @@ pip install -r requirements.txt in Terminal
 By analysing data and looking for the best model it was find out that:
 1.	Cumulated total spend amount in the spaceship was not so good variable compared to expenditure when knowing expenditure for different things and activities
 2.	Because of high correlation in between TRAPPIST and 55 Canri e, 55 Canri destination was eliminated from the variables and that improved model prediction score. 
-3.	Because of high correlation in between Earth and Mart departure planets, Mars was eliminated from the variables and that improved model prediction score
-4.	To predict better results with variables destination 55 Canri and departure planet Mars – would be needed additional model.
+3.	Because of high correlation in between Earth and Mars departure planets, Mars was eliminated from the variables and that improved model prediction score
+4.	To predict better results with variables destination 55 Canri and departure planet Mars – would be needed additional model
