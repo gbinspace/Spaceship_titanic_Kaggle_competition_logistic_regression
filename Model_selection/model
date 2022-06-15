@@ -12,7 +12,7 @@ pd.set_option('display.max_columns',30)
 
 
 # Read CSV final_train data file into DataFrame
-final_train = pd.read_csv("Project/JupyterNotebook/final_train.csv")
+final_train = pd.read_csv("Model_selection/JupyterNotebook/final_train.csv")
 print(final_train)
 
 cols = ["Age","RoomService","FoodCourt", "ShoppingMall","Spa", "VRDeck","CryoSleep", "Cabin_class_A","Cabin_class_B",
@@ -110,6 +110,6 @@ prediction_results.info()
 
 
 # Make pickle file of our model
-with open('Project/model.pickle', 'wb') as handle:
+with open('Model_selection/model.pickle', 'wb') as handle:
     pickle.dump(RFC_clf, handle, protocol=pickle.HIGHEST_PROTOCOL)
 

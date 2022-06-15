@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 
 
-with open(f'Project/model.pickle', 'rb') as handle:
+with open(f'Model_selection/model.pickle', 'rb') as handle:
     model = pickle.load(handle)
 
 # Create flask app

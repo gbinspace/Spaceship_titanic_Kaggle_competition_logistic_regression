@@ -14,7 +14,7 @@ Best parameters where find by GridSearch and manually changing which data should
 pip install -r requirements.txt in Terminal
 <br> 2. Run py application called app in main directory ProjectWorkSpaceshipTitanic
 
-#Data files:
+# Data files:
 <br> Files can be find in Kaggle competitions site: https://www.kaggle.com/competitions/spaceship-titanic and this Git repository.
 
 
