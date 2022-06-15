@@ -1,0 +1,115 @@
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.feature_selection import RFE
+from sklearn.model_selection import train_test_split
+import pickle
+desired_width = 320
+pd.set_option('display.width', desired_width)
+pd.set_option('display.max_columns',30)
+
+
+# Read CSV final_train data file into DataFrame
+final_train = pd.read_csv("Project/JupyterNotebook/final_train.csv")
+print(final_train)
+
+cols = ["Age","RoomService","FoodCourt", "ShoppingMall","Spa", "VRDeck","CryoSleep", "Cabin_class_A","Cabin_class_B",
+        "Cabin_class_C","Cabin_class_D","Cabin_class_E","Cabin_class_F","Cabin_class_G","Cabin_class_T",
+        "HomePlanet_Earth", "HomePlanet_Europa",
+        "Destination_PSO J318.5-22", "Destination_TRAPPIST-1e"]
+
+# Select independent and dependent variable
+X = final_train[cols]
+y = final_train['Transported']
+
+
+# Split the dataset into train and test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=49)
+
+# # Feature scaling
+# sc = StandardScaler()
+# X_train = sc.fit_transform(X_train)
+# X_test = sc.transform(X_test)
+# print(X_train, y_train)
+
+# Adding LogisticRegression() model
+
+# model = LogisticRegression(max_iter=10000000)
+# # create the RFE model and select 20 attributes
+# rfe = RFE(model, n_features_to_select=19)
+# lr_rfe = rfe.fit(X, y)
+# # summarize the selection of the attributes
+# print('Selected features: %s' % list(X.columns[rfe.support_]))
+# score = lr_rfe.score(X_test, y_test)
+# print(score)
+
+
+# y_pred = lr_rfe.predict(X_test)
+# print(y_pred)
+# from sklearn.metrics import confusion_matrix
+# print(confusion_matrix(y_test, y_pred))
+# from sklearn.metrics import f1_score
+# print(f1_score(y_test, y_pred, average='micro'))
+
+
+########################################################################
+##Kaggle
+########################################################################
+
+# final_test = pd.read_csv("final_test_submission.csv")
+# print(final_test)
+#
+# X_final_test = final_test[cols]
+# y_pred_test = rfe.predict(X_final_test)
+# X_final_test.shape
+#
+# X_final_test['Transported'] = rfe.predict(X_final_test)
+# X_final_test['PassengerId'] = final_test['PassengerId']
+# X_final_test=X_final_test[['PassengerId','Transported']]
+# print(X_final_test)
+# X_final_test.to_csv("final_test_result_to_Kaggle.csv", index=False)
+########################################################################
+#################Random Forest Classifier###############################
+########################################################################
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import make_classification
+RFC_clf = RandomForestClassifier(max_depth=2, random_state=0)
+RFC_clf.fit(X, y)
+
+y_pred = RFC_clf.predict(X_test)
+print(y_pred)
+from sklearn.metrics import confusion_matrix
+print(confusion_matrix(y_test, y_pred))
+from sklearn.metrics import f1_score
+print(f1_score(y_test, y_pred, average='micro'))
+
+
+########################################################################
+final_train['Transported_prediction'] = RFC_clf.predict(final_train[cols])
+final_train['PassengerId'] = final_train['PassengerId']
+final_train['Actual_transported'] = final_train['Transported']
+
+prediction_results = final_train[["Age","RoomService","FoodCourt", "ShoppingMall","Spa", "VRDeck","CryoSleep", "Cabin_class_A","Cabin_class_B",
+        "Cabin_class_C","Cabin_class_D","Cabin_class_E","Cabin_class_F","Cabin_class_G","Cabin_class_T",
+        "HomePlanet_Earth", "HomePlanet_Europa",
+        "Destination_PSO J318.5-22", "Destination_TRAPPIST-1e", "Transported_prediction", "Actual_transported"]]
+
+prediction_results.to_csv("regression_results/prediction_results_final_test_in_py.csv", index=False)
+prediction_results.info()
+# final_train['Actual_transported'] = final_train['Transported']
+
+# cols = ["Age","RoomService","FoodCourt", "ShoppingMall","Spa", "VRDeck","CryoSleep", "Cabin_class_A","Cabin_class_B",
+#         "Cabin_class_C","Cabin_class_D","Cabin_class_E","Cabin_class_F","Cabin_class_G","Cabin_class_T",
+#         "HomePlanet_Earth", "HomePlanet_Europa",
+#         "Destination_PSO J318.5-22", "Destination_TRAPPIST-1e"]
+# X = final_test[cols]
+# y = final_train['Transported']
+
+
+# Make pickle file of our model
+with open('Project/model.pickle', 'wb') as handle:
+    pickle.dump(RFC_clf, handle, protocol=pickle.HIGHEST_PROTOCOL)
+

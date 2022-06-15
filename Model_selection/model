@@ -35,22 +35,23 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 # print(X_train, y_train)
 
 # Adding LogisticRegression() model
-model = LogisticRegression(max_iter=10000000)
-# create the RFE model and select 20 attributes
-rfe = RFE(model, n_features_to_select=19)
-lr_rfe = rfe.fit(X, y)
-# summarize the selection of the attributes
-print('Selected features: %s' % list(X.columns[rfe.support_]))
-score = lr_rfe.score(X_test, y_test)
-print(score)
+
+# model = LogisticRegression(max_iter=10000000)
+# # create the RFE model and select 20 attributes
+# rfe = RFE(model, n_features_to_select=19)
+# lr_rfe = rfe.fit(X, y)
+# # summarize the selection of the attributes
+# print('Selected features: %s' % list(X.columns[rfe.support_]))
+# score = lr_rfe.score(X_test, y_test)
+# print(score)
 
 
-y_pred = lr_rfe.predict(X_test)
-print(y_pred)
-from sklearn.metrics import confusion_matrix
-print(confusion_matrix(y_test, y_pred))
-from sklearn.metrics import f1_score
-print(f1_score(y_test, y_pred, average='micro'))
+# y_pred = lr_rfe.predict(X_test)
+# print(y_pred)
+# from sklearn.metrics import confusion_matrix
+# print(confusion_matrix(y_test, y_pred))
+# from sklearn.metrics import f1_score
+# print(f1_score(y_test, y_pred, average='micro'))
 
 
 ########################################################################
@@ -73,21 +74,21 @@ print(f1_score(y_test, y_pred, average='micro'))
 #################Random Forest Classifier###############################
 ########################################################################
 
-# from sklearn.ensemble import RandomForestClassifier
-# from sklearn.datasets import make_classification
-# RFC_clf = RandomForestClassifier(max_depth=2, random_state=0)
-# RFC_clf.fit(X, y)
-#
-# y_pred = RFC_clf.predict(X_test)
-# print(y_pred)
-# from sklearn.metrics import confusion_matrix
-# print(confusion_matrix(y_test, y_pred))
-# from sklearn.metrics import f1_score
-# print(f1_score(y_test, y_pred, average='micro'))
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import make_classification
+RFC_clf = RandomForestClassifier(max_depth=2, random_state=0)
+RFC_clf.fit(X, y)
+
+y_pred = RFC_clf.predict(X_test)
+print(y_pred)
+from sklearn.metrics import confusion_matrix
+print(confusion_matrix(y_test, y_pred))
+from sklearn.metrics import f1_score
+print(f1_score(y_test, y_pred, average='micro'))
 
 
 ########################################################################
-final_train['Transported_prediction'] = lr_rfe.predict(final_train[cols])
+final_train['Transported_prediction'] = RFC_clf.predict(final_train[cols])
 final_train['PassengerId'] = final_train['PassengerId']
 final_train['Actual_transported'] = final_train['Transported']
 
@@ -110,5 +111,5 @@ prediction_results.info()
 
 # Make pickle file of our model
 with open('Project/model.pickle', 'wb') as handle:
-    pickle.dump(rfe, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    pickle.dump(RFC_clf, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
