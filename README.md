@@ -2,6 +2,7 @@
 
 # Project description:
 <br> Data set is about alternative titanic ship – spaceship travel to another planets but because it collided with dust cloud half of the passengers were transported to alternative dimension. Need help predict which passengers were transported to alternative dimenssion and help bring them back.
+It's an test of applying best ML models in use for Structured datasets.
 
 # Choosing right model:
 <br>  Because of data qualities (no linear data dependencies) was applied Logistic regression, KNeighborsClassifier and RandomForestClassifier.
